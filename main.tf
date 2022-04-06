@@ -1,4 +1,7 @@
 provider "google" {
- project     = "dfi-yuu"
- region      = "asia-east2"
+  project = var.project_id
+}
+
+provider "google-beta" {
+  project = var.project_id
 }
