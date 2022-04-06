@@ -31,7 +31,7 @@ resource "google_composer_environment" "dev" {
       allowed_ip_range {
         value = "192.0.2.0/24"
         description = "office net 1"
-      },
+      }
       allowed_ip_range {
         value = "192.0.4.0/24"
         description = "office net 3"
