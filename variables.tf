@@ -7,6 +7,11 @@ variable "region" {
   default     = "asia-east2"
 }
 
+variable "zone" {
+  description = "Zone Location for Composer"
+  default     = "asia-east2-a"
+}
+
 variable "ssl" {
   description = "Run load balancer on HTTPS and provision managed certificate with provided `domain`."
   type        = bool

@@ -1,42 +1,57 @@
 resource "google_composer_environment" "dev" {
-  name   = "dev"
-  region = "asia-east2"
+  name = "dev-composer"
+  region = var.region
+
   config {
 
-    software_config {
-      image_version = "composer-2-airflow-2.2.3"
-    }
-
-    workloads_config {
-      scheduler {
-        cpu        = 0.5
-        memory_gb  = 1.875
-        storage_gb = 1
-        count      = 1
-      }
-      web_server {
-        cpu        = 0.5
-        memory_gb  = 1.875
-        storage_gb = 1
-      }
-      worker {
-        cpu = 2
-        memory_gb  = 8
-        storage_gb = 10
-        min_count  = 3
-        max_count  = 3
-      }
-
-
-    }
-    environment_size = "ENVIRONMENT_SIZE_SMALL"
-
     node_config {
-      network    = google_compute_network.dev-composer-network.id
-      subnetwork = google_compute_subnetwork.dev-composer-subnetwork.id
-      service_account = google_service_account.dev-composer-service-account.name
+      service_account = "example-account@example-project.iam.gserviceaccount.com"
+      oauth_scopes = "[https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/bigquery]"
+      node_count = 4
+      disk_size_gb = 100
+      zone = "us-central1-a"
+      machine_type = "n1-standard-2"
     }
+
+    software_config {
+      python_version = "3"
+      image_version = "composer-1.18.4-airflow-1.10.15"
+      scheduler_count = 1
+    }
+
+    database_config {
+      machine_type = "db-n1-standard-2"
+    }
+
+    web_server_config {
+      machine_type = "composer-n1-webserver-2"
+    }
+
+    web_server_network_access_control {
+      allowed_ip_range {
+        value = "192.0.2.0/24"
+        description = "office net 1"
+      },
+      allowed_ip_range {
+        value = "192.0.4.0/24"
+        description = "office net 3"
+      }
+
+    }
+
+    maintenance_window {
+      start_time = "2021-01-01T01:00:00Z"
+      end_time = "2021-01-01T07:00:00Z"
+      recurrence = "FREQ=WEEKLY;BYDAY=SU,WE,SA"
+    }
+
   }
+
+  labels = {
+    owner = "engineering-team"
+    env = "development"
+  }
+
 }
 
 resource "google_compute_network" "dev-composer-network" {
