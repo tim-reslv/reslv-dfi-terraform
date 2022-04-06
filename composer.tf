@@ -6,10 +6,10 @@ resource "google_composer_environment" "dev" {
 
     node_config {
       service_account = "example-account@example-project.iam.gserviceaccount.com"
-      oauth_scopes = "[https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/bigquery]"
-      node_count = 4
+#      oauth_scopes = "[https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/bigquery]"
+#      node_count = 4
       disk_size_gb = 100
-      zone = "us-central1-a"
+      zone = var.zone
       machine_type = "n1-standard-2"
     }
 
@@ -19,31 +19,28 @@ resource "google_composer_environment" "dev" {
       scheduler_count = 1
     }
 
-    database_config {
-      machine_type = "db-n1-standard-2"
-    }
+#    database_config {
+#      machine_type = "db-n1-standard-2"
+#    }
+#    web_server_config {
+#      machine_type = "composer-n1-webserver-2"
+#    }
+#    web_server_network_access_control {
+#      allowed_ip_range {
+#        value = "192.0.2.0/24"
+#        description = "office net 1"
+#      }
+#      allowed_ip_range {
+#        value = "192.0.4.0/24"
+#        description = "office net 3"
+#      }
+#    }
 
-    web_server_config {
-      machine_type = "composer-n1-webserver-2"
-    }
-
-    web_server_network_access_control {
-      allowed_ip_range {
-        value = "192.0.2.0/24"
-        description = "office net 1"
-      }
-      allowed_ip_range {
-        value = "192.0.4.0/24"
-        description = "office net 3"
-      }
-
-    }
-
-    maintenance_window {
-      start_time = "2021-01-01T01:00:00Z"
-      end_time = "2021-01-01T07:00:00Z"
-      recurrence = "FREQ=WEEKLY;BYDAY=SU,WE,SA"
-    }
+#    maintenance_window {
+#      start_time = "2021-01-01T01:00:00Z"
+#      end_time = "2021-01-01T07:00:00Z"
+#      recurrence = "FREQ=WEEKLY;BYDAY=SU,WE,SA"
+#    }
 
   }
 
