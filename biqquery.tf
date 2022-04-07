@@ -31,7 +31,7 @@ data "google_iam_policy" "owner" {
   }
 }
 
-resource "google_bigquery_dataset_iam_binding" "reader" {
+resource "google_bigquery_dataset_iam_binding" "viewer" {
   dataset_id = google_bigquery_dataset.logging.dataset_id
   role       = "roles/bigquery.dataViewer"
 
@@ -78,13 +78,6 @@ EOF
 
 }
 
-# resource "google_bigquery_table_iam_policy" "policy" {
-#   project = google_bigquery_table.default.project
-#   dataset_id = google_bigquery_table.default.dataset_id
-#   table_id = google_bigquery_table.default.table_id
-#   policy_data = data.google_iam_policy.owner.policy_data
-# }
-# 
 resource "google_bigquery_table_iam_binding" "owner" {
   project = google_bigquery_table.default.project
   dataset_id = google_bigquery_table.default.dataset_id
@@ -93,6 +86,16 @@ resource "google_bigquery_table_iam_binding" "owner" {
   members = [
       "user:kenny@reslv.io",
       "user:nicole@reslv.io"
+  ]
+}
+
+resource "google_bigquery_table_iam_binding" "editor" {
+  project = google_bigquery_table.default.project
+  dataset_id = google_bigquery_table.default.dataset_id
+  table_id = google_bigquery_table.default.table_id
+  role = "roles/bigquery.dataEditor"
+  members = [
+      "user:tim@reslv.io"
   ]
 }
 
