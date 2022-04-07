@@ -50,6 +50,7 @@ resource "google_bigquery_dataset_iam_member" "editor" {
 resource "google_bigquery_table" "default" {
   dataset_id = google_bigquery_dataset.logging.dataset_id
   table_id   = "bar"
+  deletion_protection = false
 
   time_partitioning {
     type = "DAY"
