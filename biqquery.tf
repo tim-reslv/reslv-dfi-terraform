@@ -89,7 +89,7 @@ resource "google_bigquery_dataset_iam_member" "editor" {
 #   ]
 # }
 
-resource "google_bigquery_table_iam_binding" "editor" {
+#resource "google_bigquery_table_iam_binding" "editor" {
 #   project = google_bigquery_table.default.project
 #   dataset_id = google_bigquery_table.default.dataset_id
 #   table_id = google_bigquery_table.default.table_id
