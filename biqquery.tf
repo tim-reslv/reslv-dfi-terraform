@@ -40,11 +40,11 @@ resource "google_bigquery_dataset_iam_binding" "viewer" {
   ]
 }
 
-# resource "google_bigquery_dataset_iam_member" "editor" {
-#   dataset_id = google_bigquery_dataset.logging.dataset_id
-#   role       = "roles/bigquery.dataEditor"
-#   member     = "user:tim@reslv.io"
-# }
+resource "google_bigquery_dataset_iam_member" "editor" {
+  dataset_id = google_bigquery_dataset.logging.dataset_id
+  role       = "roles/bigquery.dataEditor"
+  member     = "user:tim@reslv.io"
+}
 
 
 # resource "google_bigquery_table" "default" {
