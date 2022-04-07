@@ -3,14 +3,15 @@ resource "google_composer_environment" "dev" {
   region = var.region
 
   config {
-
+    node_count = 3
     node_config {
-      service_account = "1025339549236-compute@developer.gserviceaccount.com"
-      oauth_scopes = "[https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/bigquery]"
-      node_count = 3
-      disk_size_gb = 100
       zone = var.zone
       machine_type = "n1-standard-2"
+      service_account = "1025339549236-compute@developer.gserviceaccount.com"
+      oauth_scopes = "[https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/bigquery]"
+#      node_count = 3
+      disk_size_gb = 100
+
     }
     software_config {
       image_version = "composer-1.18.5-airflow-2.2.3"
