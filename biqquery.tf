@@ -85,7 +85,7 @@ EOF
 #   policy_data = data.google_iam_policy.owner.policy_data
 # }
 # 
-resource "google_bigquery_table_iam_binding" "binding" {
+resource "google_bigquery_table_iam_binding" "owner" {
   project = google_bigquery_table.default.project
   dataset_id = google_bigquery_table.default.dataset_id
   table_id = google_bigquery_table.default.table_id
@@ -96,12 +96,12 @@ resource "google_bigquery_table_iam_binding" "binding" {
   ]
 }
 
-resource "google_bigquery_table_iam_member" "viewer" {
+resource "google_bigquery_table_iam_binding" "viewer" {
   project = google_bigquery_table.default.project
   dataset_id = google_bigquery_table.default.dataset_id
   table_id = google_bigquery_table.default.table_id
   role = "roles/bigquery.dataViewer"
   members = [
-    "user:tim@reslv.io"
+      "user:tim@reslv.io"
   ]
 }
