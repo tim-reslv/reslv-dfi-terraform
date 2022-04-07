@@ -1,7 +1,7 @@
 resource "google_composer_environment" "dev-composer" {
   name = "dev-composer"
   region = var.region
-#  provider = google-beta
+  provider = google-beta
 
   config {
     node_count = 3
