@@ -23,6 +23,12 @@ resource "google_composer_environment" "dev-composer" {
       python_version = "3"
       scheduler_count = 1
     }
+
+    maintenance_window {
+      start_time = "2021-01-01T01:00:00Z"
+      end_time = "2021-01-01T07:00:00Z"
+      recurrence = "FREQ=WEEKLY;BYDAY=SU,WE,SA"
+    }
   }
 
   labels = {

@@ -4,4 +4,3 @@ zone = "asia-east2-a"
 ssl = false
 domain = ""
 lb-name = "run-lb"
-
