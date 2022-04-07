@@ -4,6 +4,7 @@ resource "google_bigtable_instance" "dev-bigtable-instance" {
 
   cluster {
     cluster_id   = "tf-instance-cluster"
+    zone = var.zone
     num_nodes    = 1
     storage_type = "SSD"
   }
