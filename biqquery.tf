@@ -47,64 +47,64 @@ resource "google_bigquery_dataset_iam_member" "editor" {
 }
 
 
-# resource "google_bigquery_table" "default" {
-#   dataset_id = google_bigquery_dataset.logging.dataset_id
-#   table_id   = "bar"
+resource "google_bigquery_table" "default" {
+  dataset_id = google_bigquery_dataset.logging.dataset_id
+  table_id   = "bar"
 
-#   time_partitioning {
-#     type = "DAY"
-#   }
+  time_partitioning {
+    type = "DAY"
+  }
 
-#   labels = {
-#     env = "default"
-#   }
+  labels = {
+    env = "default"
+  }
 
-#   schema = <<EOF
-# [
-#   {
-#     "name": "permalink",
-#     "type": "STRING",
-#     "mode": "NULLABLE",
-#     "description": "The Permalink"
-#   },
-#   {
-#     "name": "state",
-#     "type": "STRING",
-#     "mode": "NULLABLE",
-#     "description": "State where the head office is located"
-#   }
-# ]
-# EOF
+  schema = <<EOF
+[
+  {
+    "name": "permalink",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The Permalink"
+  },
+  {
+    "name": "state",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "State where the head office is located"
+  }
+]
+EOF
 
-# }
+}
 
-# resource "google_bigquery_table_iam_binding" "owner" {
-#   project = google_bigquery_table.default.project
-#   dataset_id = google_bigquery_table.default.dataset_id
-#   table_id = google_bigquery_table.default.table_id
-#   role = "roles/bigquery.dataOwner"
-#   members = [
-#       "user:kenny@reslv.io",
-#       "user:nicole@reslv.io"
-#   ]
-# }
+resource "google_bigquery_table_iam_binding" "owner" {
+  project = google_bigquery_table.default.project
+  dataset_id = google_bigquery_table.default.dataset_id
+  table_id = google_bigquery_table.default.table_id
+  role = "roles/bigquery.dataOwner"
+  members = [
+      "user:kenny@reslv.io",
+      "user:nicole@reslv.io"
+  ]
+}
 
-#resource "google_bigquery_table_iam_binding" "editor" {
-#   project = google_bigquery_table.default.project
-#   dataset_id = google_bigquery_table.default.dataset_id
-#   table_id = google_bigquery_table.default.table_id
-#   role = "roles/bigquery.dataEditor"
-#   members = [
-#       "user:tim@reslv.io"
-#   ]
-# }
+resource "google_bigquery_table_iam_binding" "editor" {
+  project = google_bigquery_table.default.project
+  dataset_id = google_bigquery_table.default.dataset_id
+  table_id = google_bigquery_table.default.table_id
+  role = "roles/bigquery.dataEditor"
+  members = [
+      "user:tim@reslv.io"
+  ]
+}
 
-# resource "google_bigquery_table_iam_binding" "viewer" {
-#   project = google_bigquery_table.default.project
-#   dataset_id = google_bigquery_table.default.dataset_id
-#   table_id = google_bigquery_table.default.table_id
-#   role = "roles/bigquery.dataViewer"
-#   members = [
-#       "user:tim@reslv.io"
-#   ]
-# }
+resource "google_bigquery_table_iam_binding" "viewer" {
+  project = google_bigquery_table.default.project
+  dataset_id = google_bigquery_table.default.dataset_id
+  table_id = google_bigquery_table.default.table_id
+  role = "roles/bigquery.dataViewer"
+  members = [
+      "user:tim@reslv.io"
+  ]
+}
