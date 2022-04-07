@@ -12,23 +12,23 @@ resource "google_composer_environment" "dev-composer" {
       oauth_scopes = ["https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/bigquery"]
       disk_size_gb = 100
     }
-    database_config {
-      machine_type = "db-n1-standard-2"
-    }
-    web_server_config {
-      machine_type = "composer-n1-webserver-2"
-    }
+    # database_config {
+    #   machine_type = "db-n1-standard-2"
+    # }
+    # web_server_config {
+    #   machine_type = "composer-n1-webserver-2"
+    # }
     software_config {
       image_version = "composer-1.18.5-airflow-2.2.3"
       python_version = "3"
       scheduler_count = 1
     }
 
-    maintenance_window {
-      start_time = "2021-01-01T01:00:00Z"
-      end_time = "2021-01-01T07:00:00Z"
-      recurrence = "FREQ=WEEKLY;BYDAY=SU,WE,SA"
-    }
+    # maintenance_window {
+    #   start_time = "2021-01-01T01:00:00Z"
+    #   end_time = "2021-01-01T07:00:00Z"
+    #   recurrence = "FREQ=WEEKLY;BYDAY=SU,WE,SA"
+    # }
   }
 
   labels = {
