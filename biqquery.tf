@@ -1,7 +1,7 @@
 resource "google_bigquery_dataset" "logging" {
   dataset_id                  = "logging_dataset"
   friendly_name               = "logging"
-  description                 = "This is for loggin dataset"
+  description                 = "This is for logging dataset"
   location                    = var.region
   default_table_expiration_ms = 3600000
 
@@ -40,11 +40,11 @@ resource "google_bigquery_dataset_iam_binding" "viewer" {
   ]
 }
 
-resource "google_bigquery_dataset_iam_member" "editor" {
-  dataset_id = google_bigquery_dataset.logging.dataset_id
-  role       = "roles/bigquery.dataEditor"
-  member     = "user:tim@reslv.io"
-}
+# resource "google_bigquery_dataset_iam_member" "editor" {
+#   dataset_id = google_bigquery_dataset.logging.dataset_id
+#   role       = "roles/bigquery.dataEditor"
+#   member     = "user:tim@reslv.io"
+# }
 
 
 resource "google_bigquery_table" "default" {
