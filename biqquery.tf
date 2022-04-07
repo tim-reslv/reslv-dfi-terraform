@@ -78,21 +78,6 @@ EOF
 
 }
 
-resource "google_bigquery_table" "default" {
-  dataset_id = "${google_bigquery_dataset.logging.dataset_id}"
-  table_id   = "sales"
-
-  time_partitioning {
-    type = "DAY"
-  }
-
-  labels = {
-    env = "default"
-  }
-
-  schema = "${file("schema.json")}"
-}
-
 resource "google_bigquery_table_iam_policy" "policy" {
   project = google_bigquery_table.default.project
   dataset_id = google_bigquery_table.default.dataset_id
