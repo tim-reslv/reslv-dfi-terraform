@@ -11,22 +11,18 @@ resource "google_composer_environment" "dev" {
       oauth_scopes = "[https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/bigquery]"
 #      node_count = 3
       disk_size_gb = 100
-
+    }
+    database_config {
+      machine_type = "db-n1-standard-2"
+    }
+    web_server_config {
+      machine_type = "composer-n1-webserver-2"
     }
     software_config {
       image_version = "composer-1.18.5-airflow-2.2.3"
       python_version = "3"
       scheduler_count = 1
     }
-
-    database_config {
-      machine_type = "db-n1-standard-2"
-    }
-
-    web_server_config {
-      machine_type = "composer-n1-webserver-2"
-    }
-
   }
 
   labels = {
