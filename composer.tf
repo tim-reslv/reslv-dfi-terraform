@@ -1,4 +1,4 @@
-resource "google_composer_environment" "dev" {
+resource "google_composer_environment" "dev-composer" {
   name = "dev-composer"
   region = var.region
 
@@ -7,7 +7,7 @@ resource "google_composer_environment" "dev" {
     node_config {
       zone = var.zone
       machine_type = "n1-standard-2"
-      service_account = "1025339549236-compute@developer.gserviceaccount.com"
+      service_account = "terraform@dfi-yuu.iam.gserviceaccount.com"
       oauth_scopes = ["https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/bigquery"]
 #      node_count = 3
       disk_size_gb = 100
