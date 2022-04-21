@@ -41,29 +41,29 @@ resource "google_compute_region_network_endpoint_group" "serverless_neg" {
   network_endpoint_type = "SERVERLESS"
   region                = var.region
   cloud_run {
-    service = google_cloud_run_service.default.name
+    service = google_cloud_run_service.dfi-cloud-run.name
   }
 }
 
-resource "google_cloud_run_service" "default" {
-  name     = "example"
-  location = var.region
-  project  = var.project_id
+#resource "google_cloud_run_service" "dfi-cloud-run" {
+#  name     = "dfi-cloud-run"
+#  location = var.region
+#  project  = var.project_id
+#
+#  template {
+#    spec {
+#      containers {
+#        image = "gcr.io/cloudrun/hello"
+#      }
+#    }
+#  }
+#}
 
-  template {
-    spec {
-      containers {
-        image = "gcr.io/cloudrun/hello"
-      }
-    }
-  }
-}
-
-resource "google_cloud_run_service_iam_member" "public-access" {
-  location = google_cloud_run_service.default.location
-  project  = google_cloud_run_service.default.project
-  service  = google_cloud_run_service.default.name
-  role     = "roles/run.invoker"
-  member   = "allUsers"
-}
+#resource "google_cloud_run_service_iam_member" "public-access" {
+#  location = google_cloud_run_service.dfi-cloud-run.location
+#  project  = google_cloud_run_service.dfi-cloud-run.project
+#  service  = google_cloud_run_service.dfi-cloud-run.name
+#  role     = "roles/run.invoker"
+#  member   = "allUsers"
+#}
 # [END cloudloadbalancing_ext_http_cloudrun]
