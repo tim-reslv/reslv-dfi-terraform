@@ -53,7 +53,7 @@ resource "google_cloud_run_service" "dfi-cloud-run" {
   template {
     spec {
       containers {
-        image = "gcr.io/dfi-yuu/dfi-cloud-run"
+        image = "gcr.io/dfi-yuu/dfi-cloud-run:v2.0"
       }
     }
   }
